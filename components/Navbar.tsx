@@ -35,21 +35,27 @@ export const Navbar: React.FC<NavbarProps> = ({ onUploadClick }) => {
   };
 
   return (
-    <nav className="bg-blue-900 text-white shadow-md">
+    <nav className="bg-blue-900 text-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-2">
             <Music size={28} className="text-white" />
             <span className="font-bold text-xl tracking-tight">Beats 4 Nepal</span>
           </div>
 
+          {/* Mobile Hamburger Icon */}
           <div className="md:hidden">
-            <button onClick={() => setMenuOpen(!menuOpen)} className="text-white focus:outline-none">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-white focus:outline-none"
+              aria-label="Toggle menu"
+            >
               {menuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
 
-          <div className="hidden md:flex items-center space-x-6">
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-6">
             <Link href="/" className="hover:text-blue-200 transition-colors">Home</Link>
             <a href="#beats" className="hover:text-blue-200 transition-colors">Beats</a>
             <a href="#services" className="hover:text-blue-200 transition-colors">Services</a>
@@ -57,28 +63,31 @@ export const Navbar: React.FC<NavbarProps> = ({ onUploadClick }) => {
               <>
                 <button
                   onClick={onUploadClick}
-                  className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md"
+                  className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md text-sm font-medium"
                 >
                   Upload Beat
                 </button>
                 <button
                   onClick={handleLogout}
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md"
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium"
                 >
                   Logout
                 </button>
               </>
             ) : (
-              <Link href="/login" className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md">
+              <Link
+                href="/login"
+                className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md text-sm font-medium"
+              >
                 Login
               </Link>
             )}
           </div>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile Menu Dropdown */}
         {menuOpen && (
-          <div className="md:hidden mt-4 space-y-4">
+          <div className="md:hidden mt-4 space-y-4 animate-fadeIn">
             <Link href="/" className="block hover:text-blue-200 transition-colors">Home</Link>
             <a href="#beats" className="block hover:text-blue-200 transition-colors">Beats</a>
             <a href="#services" className="block hover:text-blue-200 transition-colors">Services</a>
@@ -86,19 +95,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onUploadClick }) => {
               <>
                 <button
                   onClick={onUploadClick}
-                  className="w-full bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md"
+                  className="w-full bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md text-sm font-medium"
                 >
                   Upload Beat
                 </button>
                 <button
                   onClick={handleLogout}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium"
                 >
                   Logout
                 </button>
               </>
             ) : (
-              <Link href="/login" className="block w-full bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md">
+              <Link
+                href="/login"
+                className="block w-full bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md text-sm font-medium"
+              >
                 Login
               </Link>
             )}
