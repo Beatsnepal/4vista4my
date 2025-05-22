@@ -58,7 +58,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onUploadClick }) => {
           <div className="hidden md:flex items-center gap-6">
             <Link href="/" className="hover:text-blue-200 transition-colors">Home</Link>
             <a href="#beats" className="hover:text-blue-200 transition-colors">Beats</a>
-            <a href="#services" className="hover:text-blue-200 transition-colors">Services</a>
+            <Link href="/my-profile" className="hover:text-blue-200 transition-colors">My Profile</Link>
+            <Link href="/album-sell" className="hover:text-blue-200 transition-colors">Sell Album</Link>
             {user ? (
               <>
                 <button
@@ -74,14 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onUploadClick }) => {
                   Logout
                 </button>
               </>
-            ) : (
-              <Link
-                href="/login"
-                className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md text-sm font-medium"
-              >
-                Login
-              </Link>
-            )}
+            ) : null}
           </div>
         </div>
 
@@ -90,7 +84,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onUploadClick }) => {
           <div className="md:hidden mt-4 space-y-4 animate-fadeIn">
             <Link href="/" className="block hover:text-blue-200 transition-colors">Home</Link>
             <a href="#beats" className="block hover:text-blue-200 transition-colors">Beats</a>
-            <a href="#services" className="block hover:text-blue-200 transition-colors">Services</a>
+            <Link href="/my-profile" className="block hover:text-blue-200 transition-colors">My Profile</Link>
+            <Link href="/album-sell" className="block hover:text-blue-200 transition-colors">Sell Album</Link>
             {user ? (
               <>
                 <button
@@ -106,14 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onUploadClick }) => {
                   Logout
                 </button>
               </>
-            ) : (
-              <Link
-                href="/login"
-                className="block w-full bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md text-sm font-medium"
-              >
-                Login
-              </Link>
-            )}
+            ) : null}
           </div>
         )}
       </div>
