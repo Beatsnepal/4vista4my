@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Music } from 'lucide-react';
+import { Music, Menu, X } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
 import Link from 'next/link';
 
@@ -10,6 +10,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onUploadClick }) => {
   const [user, setUser] = useState<any>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
@@ -42,34 +43,67 @@ export const Navbar: React.FC<NavbarProps> = ({ onUploadClick }) => {
             <span className="font-bold text-xl tracking-tight">Beats 4 Nepal</span>
           </div>
 
+          <div className="md:hidden">
+            <button onClick={() => setMenuOpen(!menuOpen)} className="text-white focus:outline-none">
+              {menuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+
           <div className="hidden md:flex items-center space-x-6">
             <Link href="/" className="hover:text-blue-200 transition-colors">Home</Link>
             <a href="#beats" className="hover:text-blue-200 transition-colors">Beats</a>
-            <Link href="/mixing-service" className="hover:text-blue-200 transition-colors">Mixing Service</Link>
-            <Link href="/album-sell" className="hover:text-blue-200 transition-colors">Albums</Link>
-            <Link href="/myprofile" className="hover:text-blue-200 transition-colors">My Profile</Link>
-            {!user && (
+            <a href="#services" className="hover:text-blue-200 transition-colors">Services</a>
+            {user ? (
               <>
-                <Link href="/signup" className="hover:text-blue-200 transition-colors">Sign Up</Link>
-                <Link href="/signin" className="hover:text-blue-200 transition-colors">Sign In</Link>
+                <button
+                  onClick={onUploadClick}
+                  className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md"
+                >
+                  Upload Beat
+                </button>
+                <button
+                  onClick={handleLogout}
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md"
+                >
+                  Logout
+                </button>
               </>
-            )}
-            {user && (
-              <button onClick={handleLogout} className="hover:text-red-300 transition-colors">
-                Logout
-              </button>
+            ) : (
+              <Link href="/login" className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md">
+                Login
+              </Link>
             )}
           </div>
-
-          {user && (
-            <button
-              onClick={onUploadClick}
-              className="bg-white text-blue-900 px-4 py-2 rounded-md font-medium hover:bg-blue-100 transition-colors"
-            >
-              Upload Beat
-            </button>
-          )}
         </div>
+
+        {/* Mobile menu */}
+        {menuOpen && (
+          <div className="md:hidden mt-4 space-y-4">
+            <Link href="/" className="block hover:text-blue-200 transition-colors">Home</Link>
+            <a href="#beats" className="block hover:text-blue-200 transition-colors">Beats</a>
+            <a href="#services" className="block hover:text-blue-200 transition-colors">Services</a>
+            {user ? (
+              <>
+                <button
+                  onClick={onUploadClick}
+                  className="w-full bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md"
+                >
+                  Upload Beat
+                </button>
+                <button
+                  onClick={handleLogout}
+                  className="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <Link href="/login" className="block w-full bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md">
+                Login
+              </Link>
+            )}
+          </div>
+        )}
       </div>
     </nav>
   );
