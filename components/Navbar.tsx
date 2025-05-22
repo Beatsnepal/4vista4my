@@ -57,9 +57,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onUploadClick }) => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-6">
             <Link href="/" className="hover:text-blue-200 transition-colors">Home</Link>
-            <a href="#beats" className="hover:text-blue-200 transition-colors">Beats</a>
+            <Link href="#beats" className="hover:text-blue-200 transition-colors">Beats</Link>
+            <Link href="/albums" className="hover:text-blue-200 transition-colors">Albums</Link>
             <Link href="/my-profile" className="hover:text-blue-200 transition-colors">My Profile</Link>
-            <Link href="/album-sell" className="hover:text-blue-200 transition-colors">Sell Album</Link>
             {user ? (
               <>
                 <button
@@ -75,7 +75,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onUploadClick }) => {
                   Logout
                 </button>
               </>
-            ) : null}
+            ) : (
+              <>
+                <Link
+                  href="/signin"
+                  className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md text-sm font-medium"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/signup"
+                  className="bg-white text-blue-900 px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-100"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
         </div>
 
@@ -83,9 +98,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onUploadClick }) => {
         {menuOpen && (
           <div className="md:hidden mt-4 space-y-4 animate-fadeIn">
             <Link href="/" className="block hover:text-blue-200 transition-colors">Home</Link>
-            <a href="#beats" className="block hover:text-blue-200 transition-colors">Beats</a>
+            <Link href="#beats" className="block hover:text-blue-200 transition-colors">Beats</Link>
+            <Link href="/albums" className="block hover:text-blue-200 transition-colors">Albums</Link>
             <Link href="/my-profile" className="block hover:text-blue-200 transition-colors">My Profile</Link>
-            <Link href="/album-sell" className="block hover:text-blue-200 transition-colors">Sell Album</Link>
             {user ? (
               <>
                 <button
@@ -101,7 +116,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onUploadClick }) => {
                   Logout
                 </button>
               </>
-            ) : null}
+            ) : (
+              <>
+                <Link
+                  href="/signin"
+                  className="block w-full bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md text-sm font-medium"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/signup"
+                  className="block w-full bg-white text-blue-900 px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-100"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
         )}
       </div>
